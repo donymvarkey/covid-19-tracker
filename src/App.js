@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from './App.module.css'
+import { Cards, Cases, IndividualStates, Navbar } from './components'
+import { fetchData, fetchCasesIndia, fetchIndividualStatesCases } from './api'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+    state = {
+        data: {},
+        dataLocal: {},
+        dataIndividualStates: {}
+    }
+
+    async componentDidMount () {
+        const data = await fetchData();
+        const dataLocal = await fetchCasesIndia();
+        const dataIndividualStates = await fetchIndividualStatesCases()
+
+        this.setState({
+            data: data,
+            dataLocal: dataLocal,
+            dataIndividualStates: dataIndividualStates
+        })
+    }
+
+    render() {
+        const {data} = this.state;
+        const {dataLocal} = this.state;
+        const {dataIndividualStates} = this.state;
+        console.log(dataIndividualStates)
+        return (
+            <div>
+                <Navbar />
+                <Cards data={data}/>
+                <Cases data={dataLocal}/>
+                <IndividualStates data={dataIndividualStates}/>
+            </div>
+        )
+    }
 }
-
-export default App;
