@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Container, Table } from 'react-bootstrap'
 
 const IndividualStates = (data) => {
     if(!data.data.status) {
         return('Loading...')
     }
-    var lastUpdate;
     const tableItems = data.data.data.map((item) => {
-        lastUpdate = item.lastUpdate;
         return(
             <tbody>
                 <tr>
@@ -23,7 +21,6 @@ const IndividualStates = (data) => {
     return (
         <Container className="p-4 gap-5">
             <Table className="table caption-top" bordered responsive>
-                <caption className="text-end">Last Updated: {new Date(lastUpdate).toDateString()}</caption>
                 <thead>
                     <tr>
                         <th>State</th>

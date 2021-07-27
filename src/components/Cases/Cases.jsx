@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Container, Row, Col , Image} from 'react-bootstrap'
+import { Card, Container, Row, Col} from 'react-bootstrap'
 import CountUp from 'react-countup';
 
 const Cases = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
@@ -23,7 +23,6 @@ const Cases = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 <CountUp start={0} end={confirmed.value} duration={2.75} separator="," />
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted small">{new Date(lastUpdate).toDateString()}</Card.Footer>
                     </Card>
                 </Col>
                 <Col>
@@ -35,7 +34,6 @@ const Cases = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 <CountUp start={0} end={recovered.value} duration={2.75} separator="," />
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted small">{new Date(lastUpdate).toDateString()}</Card.Footer>
                     </Card>
                 </Col>
                 <Col>
@@ -47,7 +45,6 @@ const Cases = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 <CountUp start={0} end={deaths.value} duration={2.75} separator="," />
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted small">{new Date(lastUpdate).toDateString()}</Card.Footer>
                     </Card>
                 </Col>
             </Row>
